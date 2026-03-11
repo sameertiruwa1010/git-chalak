@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "git-chalak"
+version = "1.0.2"
+description = "⚡ Supercharge your Git workflow with short, powerful commands"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [{ name = "Sameer Tiruwa", email = "sameertiruwa1010@gmail.com" }]
+keywords = ["git", "cli", "developer-tools", "productivity"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Version Control :: Git",
+]
+dependencies = ["click>=8.0"]
+
+[project.scripts]
+git-chalak = "git_chalak.cli:cli"
+gc         = "git_chalak.cli:cli"
+
+[project.urls]
+Homepage   = "https://github.com/sameertiruwa/git-chalak"
+Repository = "https://github.com/sameertiruwa/git-chalak"
+Issues     = "https://github.com/sameertiruwa/git-chalak/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["git_chalak*"]
