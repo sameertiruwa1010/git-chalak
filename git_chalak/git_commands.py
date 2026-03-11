@@ -8,6 +8,26 @@ def run(cmd: list[str]) -> int:
     return result.returncode
 
 
+def get_current_branch() -> str:
+    """Return the current branch name."""
+    result = subprocess.run(
+        ["git", "branch", "--show-current"],
+        capture_output=True,
+        text=True
+    )
+    return result.stdout.strip()
+
+
+def has_upstream() -> bool:
+    """Check if current branch has a remote upstream set."""
+    result = subprocess.run(
+        ["git", "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}"],
+        capture_output=True,
+        text=True
+    )
+    return result.returncode == 0
+
+
 def git_add() -> int:
     print("📦 Staging all changes...")
     return run(["git", "add", "."])
@@ -20,7 +40,15 @@ def git_commit(message: str) -> int:
 
 def git_push() -> int:
     print("🚀 Pushing to remote...")
-    return run(["git", "push"])
+
+    if has_upstream():
+        # Normal push — upstream already set
+        return run(["git", "push"])
+    else:
+        # First push — set upstream automatically
+        branch = get_current_branch()
+        print(f"   Setting upstream: origin/{branch}")
+        return run(["git", "push", "--set-upstream", "origin", branch])
 
 
 def git_pull() -> int:
