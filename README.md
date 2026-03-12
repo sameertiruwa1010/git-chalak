@@ -1,3 +1,7 @@
+<img width="1233" height="290" alt="Screenshot from 2026-03-12 10-36-42" src="https://github.com/user-attachments/assets/47b99a53-1b71-46a0-848f-c84b77bb7857" />
+
+
+
 # git-chalak
 
 > *chalak (चालाक) — clever, smart, sharp*
